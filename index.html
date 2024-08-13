@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Alexandre Silva" />
+    <meta name="description" content="Around" />
+    <meta name="keywords" content="html,css" />
+    <link rel="shortcut" href="./imagegallery.ico" />
+
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Around</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="./images/logo_around.png"
+          alt="Logo Around"
+        />
+      </header>
+
+      <main class="content">
+        <section class="profile">
+          <img src="./images/Avatar.png" alt="Avatar" class="profile__image" />
+          <div class="profile__info">
+            <div class="profile__info-name-edit-button">
+              <p class="profile__info-name">Jacques Cousteau</p>
+
+              <button class="profile__edit-button">
+                <img src="./images/edit.png" alt="Editar" />
+              </button>
+            </div>
+            <p class="profile__info-sobre-mim">Explorador</p>
+          </div>
+
+          <button class="profile__add-button">
+            <img src="./images/add.png" alt="Adicionar" />
+          </button>
+        </section>
+        <section class="elements">
+          <div class="elements__box">
+            <img
+              src="./images/image01.png"
+              alt="image01"
+              class="Elements__image"
+            />
+            <div class="elements__contaner-title-like">
+              <h3 class="elements__title">Vale de Yosemite</h3>
+              <img
+                class="elements__group-like"
+                src="./images/like.png"
+                alt="like"
+              />
+            </div>
+          </div>
+
+          <div class="elements__box">
+            <img
+              src="./images/image02.png"
+              alt="image02"
+              class="Elements__image"
+            />
+            <div class="elements__contaner-title-like">
+              <h3 class="elements__title">Lago Louise</h3>
+              <img
+                class="elements__group-like"
+                src="./images/like.png"
+                alt="like"
+              />
+            </div>
+          </div>
+
+          <div class="elements__box">
+            <img
+              src="./images/image03.png"
+              alt="image03"
+              class="Elements__image"
+            />
+            <div class="elements__contaner-title-like">
+              <h3 class="elements__title">Montanhas Care</h3>
+              <img
+                class="elements__group-like"
+                src="./images/like.png"
+                alt="like"
+              />
+            </div>
+          </div>
+
+          <div class="elements__box">
+            <img
+              src="./images/image04.png"
+              alt="image04"
+              class="Elements__image"
+            />
+            <div class="elements__contaner-title-like">
+              <h3 class="elements__title">Latemar</h3>
+              <img
+                class="elements__group-like"
+                src="./images/like.png"
+                alt="like"
+              />
+            </div>
+          </div>
+
+          <div class="elements__box">
+            <img
+              src="./images/image05.png"
+              alt="image05"
+              class="Elements__image"
+            />
+            <div class="elements__contaner-title-like">
+              <h3 class="elements__title">Parque Nacional da Vanoise</h3>
+              <img
+                class="elements__group-like"
+                src="./images/like.png"
+                alt="like"
+              />
+            </div>
+          </div>
+
+          <div class="elements__box">
+            <img
+              src="./images/image06.png"
+              alt="image06"
+              class="Elements__image"
+            />
+            <div class="elements__contaner-title-like">
+              <h3 class="elements__title">Lago di Braies</h3>
+              <img
+                class="elements__group-like"
+                src="./images/like.png"
+                alt="like"
+              />
+            </div>
+          </div>
+        </section>
+        <section class="footer">© 2024 Around The U.S.</section>
+      </main>
+      <div class="popup popup_edit_profile">
+        <article class="popup__Container">
+          <h2 class="popup__title">Edite Perfil</h2>
+          <img
+            src="./images/Close_Icon.png"
+            alt="icone close"
+            class="popup__close"
+          />
+          <form class="popup__form">
+            <input
+              type="text"
+              class="popup__imput-name"
+              id="Nome"
+              placeholder="Nome"
+              required=""
+            />
+            <input
+              type="text"
+              class="popup__imput-sobre-mim"
+              id="sobreMim"
+              placeholder="Sobre mim"
+              required=""
+            />
+            <button type="submit" class="popup__button-save">Salvar</button>
+          </form>
+        </article>
+      </div>
+    </div>
+    <script src="./pages/index.js"></script>
+  </body>
+</html>

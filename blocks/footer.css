@@ -1,0 +1,17 @@
+.footer {
+  max-width: 880px;
+  margin: 67px auto 60px;
+  color: rgba(84, 84, 84, 1);
+}
+
+@media (max-width: 800px) {
+  .footer {
+    width: 584px;
+  }
+}
+
+@media (max-width: 320px) {
+  .footer {
+    width: 282px;
+  }
+}

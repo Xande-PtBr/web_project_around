@@ -1,0 +1,120 @@
+.profile {
+  display: flex;
+  align-items: center;
+  max-width: 880px;
+  margin: 40px auto 0;
+  color: #fff;
+}
+
+.profile__image {
+  width: 120px;
+  height: 120px;
+}
+
+.profile__info {
+  display: flex;
+  flex-wrap: wrap;
+  width: 415px;
+  margin: 22px 0 0 30px;
+  flex-direction: column;
+}
+
+.profile__info-name-edit-button {
+  display: flex;
+}
+
+.profile__info-name {
+  display: flex;
+  margin: 0;
+  font-family: Inter;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: left;
+}
+
+.profile__info-complement {
+  display: flex;
+  max-width: 415px;
+  margin: 0;
+}
+
+.profile__edit-button {
+  width: 24px;
+  height: 24px;
+  margin: 18px 0 0 18px;
+  background-color: black;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.profile__edit-button:hover {
+  filter: grayscale(100%) brightness(50%);
+}
+
+.profile__add-button {
+  width: 150px;
+  height: 50px;
+  align-items: end;
+  margin-left: auto;
+  padding: 0;
+  background-color: black;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.profile__add-button:hover {
+  filter: grayscale(100%) brightness(50%);
+}
+
+@media (max-width: 320px) {
+  .profile {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .profile__image {
+    margin: 42px auto 0;
+  }
+
+  .profile__info {
+    width: 282px;
+    margin: 30px auto 0;
+    align-items: center;
+  }
+
+  .profile__info-name {
+    font-family: Inter;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 26.63px;
+    text-align: center;
+  }
+
+  .profile__info-sobre-mim {
+    width: 282px;
+    margin: 14px 0 0 0;
+    text-align: center;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin: 4px 0 0 10px;
+    padding: 0;
+    line-height: 10px;
+  }
+
+  .profile__add-button {
+    width: 282px;
+    height: 50px;
+    margin: 36px auto 0;
+    padding: 0;
+    background-color: black;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 1);
+  }
+}
