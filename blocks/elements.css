@@ -2,6 +2,7 @@
   max-width: 880px;
   margin: 36px auto 0;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   column-gap: 17px;
   row-gap: 20px;
@@ -45,13 +46,13 @@
   height: 19px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 880px) {
   .elements {
     width: 584px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 720px) {
   .elements {
     max-width: 282px;
   }
