@@ -40,23 +40,26 @@
           </button>
         </section>
         <section class="elements">
-          <div class="elements__box">
-            <img
-              src="./images/image01.png"
-              alt="image01"
-              class="Elements__image"
-            />
-            <div class="elements__contaner-title-like">
-              <h3 class="elements__title">Vale de Yosemite</h3>
+          <!---- card ------>
+          <template id="cards-template">
+            <div class="elements__box">
               <img
-                class="elements__group-like"
-                src="./images/like.png"
-                alt="like"
+                src="./images/image01.png"
+                alt="image01"
+                class="elements__image"
               />
+              <div class="elements__contaner-title-like">
+                <h3 class="elements__title">Vale de Yosemite</h3>
+                <img
+                  class="elements__group-like"
+                  src="./images/like.png"
+                  alt="like"
+                />
+              </div>
             </div>
-          </div>
-
-          <div class="elements__box">
+          </template>
+          <!---- Fim card ------>
+          <!--           <div class="elements__box">
             <img
               src="./images/image02.png"
               alt="image02"
@@ -134,12 +137,13 @@
                 alt="like"
               />
             </div>
-          </div>
+          </div> -->
         </section>
         <footer class="footer">
           <p class="footer__copyright">© 2024 Around The U.S.</p>
         </footer>
       </main>
+      <!--------------------------Inicio popup profile-------------------------------------------------->
       <div class="popup popup_edit_profile">
         <article class="popup__Container">
           <h2 class="popup__title">Edite Perfil</h2>
@@ -151,14 +155,14 @@
           <form class="popup__form">
             <input
               type="text"
-              class="popup__imput-name"
+              class="popup__input-name"
               id="Nome"
               placeholder="Nome"
               required=""
             />
             <input
               type="text"
-              class="popup__imput-sobre-mim"
+              class="popup__input-sobre-mim"
               id="sobreMim"
               placeholder="Sobre mim"
               required=""
@@ -167,7 +171,38 @@
           </form>
         </article>
       </div>
+      <!--------------------------Fim popup profile-------------------------------------------------->
+      <!----------------- inicio popup new card ----------------------------------------------------->
+      <div class="popup popup_new-cards">
+        <article class="popup__Container">
+          <h2 class="popup__title">Novo local</h2>
+          <img
+            src="./images/Close_Icon.png"
+            alt="icone close"
+            class="popup__card-close"
+          />
+          <form class="popup__form">
+            <input
+              type="text"
+              class="popup__input-card-title"
+              id="card-title"
+              placeholder="Título"
+              required=""
+            />
+            <input
+              type="text"
+              class="popup__input-card-link-img"
+              id="Link-de-imagem"
+              placeholder="Link de imagem"
+              required=""
+            />
+            <button type="submit" class="popup__button-new-card">Criar</button>
+          </form>
+        </article>
+      </div>
     </div>
+    <!-- -----------------------Fim popup New card------------------------------------------ -->
+
     <script src="./pages/index.js"></script>
   </body>
 </html>

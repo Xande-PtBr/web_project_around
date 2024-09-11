@@ -37,6 +37,16 @@
   transition: filter 0.3s ease;
 }
 
+.popup__card-close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -30px;
+  left: 430px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
 .popup__close:hover {
   filter: grayscale(100%) brightness(50%);
 }
@@ -45,16 +55,47 @@
   display: flex;
 }
 
-.popup__imput-name {
+.popup__input-name {
   display: flex;
   width: 358px;
   margin: 54px 36px 0;
   padding: 0;
   border: none;
   border-bottom: 2px solid rgb(194, 192, 192);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
 }
 
-.popup__imput-sobre-mim {
+.popup__input-card-title {
+  display: flex;
+  width: 358px;
+  margin: 54px 36px 0;
+  padding: 0;
+  border: none;
+  border-bottom: 2px solid rgb(194, 192, 192);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
+}
+
+.popup__input-sobre-mim {
+  display: flex;
+  width: 358px;
+  margin: 30px 36px 0;
+  padding: 0;
+  border: none;
+  border-bottom: 2px solid rgb(194, 192, 192);
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
+}
+
+.popup__input-card-link-img {
   display: flex;
   width: 358px;
   margin: 30px 36px 0;
@@ -91,10 +132,32 @@
   background-color: rgb(46, 46, 46);
 }
 
+.popup__button-new-card {
+  display: flex;
+  justify-content: center;
+  margin: 48px 36px 36px;
+  padding: 0;
+  width: 358px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 1);
+  border: none;
+  line-height: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.popup__button-new-card:hover {
+  background-color: rgb(46, 46, 46);
+}
+
 @media (max-width: 320px) {
   .popup {
     width: 100%;
-    height: 70%;
   }
 
   .popup__Container {
@@ -114,7 +177,20 @@
     left: 256px;
   }
 
+  .popup__card-close {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    top: -45px;
+    left: 256px;
+  }
+
   .popup__imput-name {
+    width: 238px;
+    margin: 76px auto 0;
+  }
+
+  .popup__input-card-title {
     width: 238px;
     margin: 76px auto 0;
   }
@@ -124,7 +200,29 @@
     margin: 30px auto 0;
   }
 
+  .popup__input-card-link-img {
+    width: 238px;
+    margin: 30px auto 0;
+  }
+
   .popup__button-save {
+    display: flex;
+    justify-content: center;
+    margin: 46px 22px 25px;
+    padding: 0;
+    width: 238px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 1);
+    border: none;
+    line-height: 50px;
+    border-radius: 2px;
+  }
+
+  .popup__button-new-card {
     display: flex;
     justify-content: center;
     margin: 46px 22px 25px;
