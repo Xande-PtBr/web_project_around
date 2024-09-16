@@ -9,6 +9,8 @@
 - **Perfil do Usuário**: Exibe informações do perfil com a opção de editar o nome e a descrição sobre o usuário.
 - **Galeria de Imagens**: Mostra uma série de imagens com títulos e um botão de "curtir".
 - **Popup de Edição**: Permite a edição do perfil do usuário através de um formulário popup.
+- **Popup para dicionar Novo Cartão**:campo para adicionar cartão, Titulo e Linkda imagem.
+- **Popup de Imagens**:Ao clicar na Imagem a mesma é ampliada em um popup
 
 ## Tecnologias Utilizadas
 
