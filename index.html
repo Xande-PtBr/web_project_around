@@ -40,9 +40,15 @@
           </button>
         </section>
         <section class="elements">
-          <!---- card ------>
+          <!---- card template ------>
+
           <template id="cards-template">
             <div class="elements__box">
+              <img
+                src="./images/Trash.png"
+                alt="lixeira"
+                class="elements__trash"
+              />
               <img
                 src="./images/image01.png"
                 alt="image01"
@@ -51,93 +57,13 @@
               <div class="elements__contaner-title-like">
                 <h3 class="elements__title">Vale de Yosemite</h3>
                 <img
-                  class="elements__group-like"
+                  class="elements__like"
                   src="./images/like.png"
                   alt="like"
                 />
               </div>
             </div>
           </template>
-          <!---- Fim card ------>
-          <!--           <div class="elements__box">
-            <img
-              src="./images/image02.png"
-              alt="image02"
-              class="Elements__image"
-            />
-            <div class="elements__contaner-title-like">
-              <h3 class="elements__title">Lago Louise</h3>
-              <img
-                class="elements__group-like"
-                src="./images/like.png"
-                alt="like"
-              />
-            </div>
-          </div>
-
-          <div class="elements__box">
-            <img
-              src="./images/image03.png"
-              alt="image03"
-              class="Elements__image"
-            />
-            <div class="elements__contaner-title-like">
-              <h3 class="elements__title">Montanhas Care</h3>
-              <img
-                class="elements__group-like"
-                src="./images/like.png"
-                alt="like"
-              />
-            </div>
-          </div>
-
-          <div class="elements__box">
-            <img
-              src="./images/image04.png"
-              alt="image04"
-              class="Elements__image"
-            />
-            <div class="elements__contaner-title-like">
-              <h3 class="elements__title">Latemar</h3>
-              <img
-                class="elements__group-like"
-                src="./images/like.png"
-                alt="like"
-              />
-            </div>
-          </div>
-
-          <div class="elements__box">
-            <img
-              src="./images/image05.png"
-              alt="image05"
-              class="Elements__image"
-            />
-            <div class="elements__contaner-title-like">
-              <h3 class="elements__title">Parque Nacional da Vanoise</h3>
-              <img
-                class="elements__group-like"
-                src="./images/like.png"
-                alt="like"
-              />
-            </div>
-          </div>
-
-          <div class="elements__box">
-            <img
-              src="./images/image06.png"
-              alt="image06"
-              class="Elements__image"
-            />
-            <div class="elements__contaner-title-like">
-              <h3 class="elements__title">Lago di Braies</h3>
-              <img
-                class="elements__group-like"
-                src="./images/like.png"
-                alt="like"
-              />
-            </div>
-          </div> -->
         </section>
         <footer class="footer">
           <p class="footer__copyright">© 2024 Around The U.S.</p>
@@ -179,9 +105,9 @@
           <img
             src="./images/Close_Icon.png"
             alt="icone close"
-            class="popup__card-close"
+            class="popup__close-card"
           />
-          <form class="popup__form">
+          <form class="popup__form popup__form-card">
             <input
               type="text"
               class="popup__input-card-title"
@@ -200,8 +126,23 @@
           </form>
         </article>
       </div>
+      <!-- -----------------------Fim popup New card------------------------------------------ -->
+      <!-- ----------------------- popup Show image------------------------------------------ -->
+      <div class="popup popup_show-image">
+        <div class="popup__Container-image">
+          <img
+            src="./images/Close_Icon.png"
+            alt="icone close"
+            class="popup__close-image"
+          />
+          <div class="popup__view-image-container">
+            <img class="popup__view-image" />
+            <h2 class="popup__title-image"></h2>
+          </div>
+        </div>
+      </div>
+      <!-- -----------------------Fim popup Show image------------------------------------------ -->
     </div>
-    <!-- -----------------------Fim popup New card------------------------------------------ -->
 
     <script src="./pages/index.js"></script>
   </body>

@@ -16,6 +16,7 @@
   flex-direction: column;
   background-color: #fff;
   border-radius: 10px 10px;
+  position: relative;
 }
 
 .elements__image {
@@ -46,9 +47,20 @@
   overflow: hidden;
 }
 
-.elements__group-like {
+.elements__like {
   width: 21px;
   height: 19px;
+}
+
+.elements__Liked {
+  width: 21px;
+  height: 19px;
+}
+
+.elements__trash {
+  position: absolute;
+  top: 18px;
+  right: 15px;
 }
 
 @media (max-width: 880px) {
