@@ -106,6 +106,7 @@ function createCard(card) {
   //
   const popupShowImage = document.querySelector(".popup_show-image");
   const imageSrc = document.querySelector(".popup__view-image");
+  const imageAlt = document.querySelector(".popup__view-image");
   const imageTitle = document.querySelector(".popup__title-image");
   const viewImage = document.querySelector(".popup__view-image-container");
 
@@ -113,6 +114,7 @@ function createCard(card) {
     openPopup(popupShowImage);
 
     imageSrc.setAttribute("src", card.link);
+    imageAlt.setAttribute("Alt", card.name);
     imageTitle.textContent = card.name;
 
     const buttonCloseImage = document.querySelector(".popup__close-image");
