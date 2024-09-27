@@ -2,62 +2,6 @@ const cardList = document.querySelector(".elements");
 const popup = document.querySelector(".popup_edit_profile");
 const buttonEdit = document.querySelector(".profile__edit-button");
 
-// -----------------Função para abrir os popups ----------------------------
-function openPopup(popup) {
-  popup.classList.add("popup__opened");
-}
-
-//----------------- Função para fechar os popups ----------------------------
-function closePopup(popup) {
-  popup.classList.remove("popup__opened");
-}
-
-buttonEdit.addEventListener("click", function () {
-  openPopup(popup);
-
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileAbout.textContent;
-});
-
-//--------- fechando o popup
-const buttonClose = document.querySelector(".popup__close");
-buttonClose.addEventListener("click", function () {
-  closePopup(popup);
-});
-
-/*-----------------------variaveis form popup-----------------------*/
-const formElement = document.querySelector(".popup__form");
-const nameInput = document.querySelector(".popup__input-name");
-const jobInput = document.querySelector(".popup__input-sobre-mim");
-const profileName = document.querySelector(".profile__info-name");
-const profileAbout = document.querySelector(".profile__info-sobre-mim");
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = jobInput.value;
-
-  closePopup(popup);
-}
-
-formElement.addEventListener("submit", handleProfileFormSubmit);
-
-/* -------------------------popup-Cards------------------------------------ */
-
-const popupCards = document.querySelector(".popup_new-cards");
-const buttonAddCards = document.querySelector(".profile__add-button");
-
-buttonAddCards.addEventListener("click", function () {
-  openPopup(popupCards);
-});
-
-const buttonCloseCard = document.querySelector(".popup__close-card");
-buttonCloseCard.addEventListener("click", function () {
-  closePopup(popupCards);
-});
-
-//-------------------------Fim-popup-Cards------------------------------------ */
 //------------------------- Arr de cards ------------------------------------ */
 const initialCards = [
   {
@@ -86,7 +30,66 @@ const initialCards = [
   },
 ];
 
-//-------------------------criando card ----------------------------
+// -----------------Função para abrir os popups ----------------------------
+function openPopup(popup) {
+  popup.classList.add("popup__opened");
+}
+
+//----------------- Função para fechar os popups ----------------------------
+function closePopup(popup) {
+  popup.classList.remove("popup__opened");
+}
+
+//---criando evento de click para o botao edit, abrindo o popup e carregando com os campos preenchidos----------
+
+buttonEdit.addEventListener("click", function () {
+  openPopup(popup);
+
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileAbout.textContent;
+});
+
+//--------- fechando o popup
+const buttonClose = document.querySelector(".popup__close");
+buttonClose.addEventListener("click", function () {
+  closePopup(popup);
+});
+
+/*-----------------------variaveis form popup-----------------------*/
+const formElement = document.querySelector(".popup__form");
+const nameInput = document.querySelector(".popup__input-name");
+const jobInput = document.querySelector(".popup__input-sobre-mim");
+const profileName = document.querySelector(".profile__info-name");
+const profileAbout = document.querySelector(".profile__info-sobre-mim");
+
+//--- lidar com o formulário de perfil Enviar e adiando o comportamento do event
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = jobInput.value;
+
+  closePopup(popup);
+}
+
+formElement.addEventListener("submit", handleProfileFormSubmit);
+
+/* -------------------------popup-Cards------------------------------------ */
+
+const popupCards = document.querySelector(".popup__new-cards");
+const buttonAddCards = document.querySelector(".profile__add-button");
+
+buttonAddCards.addEventListener("click", function () {
+  openPopup(popupCards);
+});
+
+const buttonCloseCard = document.querySelector(".popup__close-card");
+buttonCloseCard.addEventListener("click", function () {
+  closePopup(popupCards);
+});
+
+//-------------------------Fim-popup-Cards------------------------------------ */
+//-------------------------Funçºao para criar os Cards------------------------------------ */
 
 function createCard(card) {
   const cardsTemplate = document.querySelector("#cards-template");
@@ -113,6 +116,7 @@ function createCard(card) {
   cardImage.addEventListener("click", function () {
     openPopup(popupShowImage);
 
+    //pega as info dos campos
     imageSrc.setAttribute("src", card.link);
     imageAlt.setAttribute("Alt", card.name);
     imageTitle.textContent = card.name;
@@ -122,8 +126,7 @@ function createCard(card) {
       closePopup(popupShowImage);
     });
   });
-  //
-  //
+
   //-----------------------  Fim popup show image
 
   //---------------------Botao Lixeira-----------------
@@ -188,3 +191,14 @@ formAddCard.addEventListener("submit", (evt) => {
   formAddCard.reset(); //reseta o form
   closePopup(popupCards); //fecha
 });
+
+//validação para o popup__form-cards
+
+/* enableValidation({
+  formSelector: ".popup__form-card",
+  inputSelector: ".popup__input-card-title, .popup__input-card-link-img",
+  submitButtonSelector: ".popup__button-new-card",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+}); */

@@ -84,7 +84,7 @@
 .popup__input-sobre-mim {
   display: flex;
   width: 358px;
-  margin: 30px 36px 0;
+  margin: 13px 36px 0;
   padding: 0;
   border: none;
   border-bottom: 2px solid rgb(194, 192, 192);
@@ -154,6 +154,73 @@
 .popup__button-new-card:hover {
   background-color: rgb(46, 46, 46);
 }
+/*  --------------- popup error---------- */
+.popup__input_type_error {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: red;
+}
+
+.nome-input-error {
+  display: block;
+  width: 358px;
+  height: 24px;
+  margin: 0 0 0 36px;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  color: red;
+}
+
+.sobreMim-input-error {
+  display: block;
+  width: 358px;
+  height: 24px;
+  margin: 0 0 0 36px;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  color: red;
+}
+/*--------------- popup new card error ---------- */
+.popup__form-input-error {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: red;
+}
+
+.card-title-error {
+  display: block;
+  width: 358px;
+  height: 24px;
+  margin: 0 0 0 36px;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  color: red;
+}
+
+.Link-de-imagem-error {
+  display: block;
+  width: 358px;
+  height: 24px;
+  margin: 0 0 0 36px;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  color: red;
+}
+
 /*---------------popup image---------------------*/
 
 .popup__Container-image {
