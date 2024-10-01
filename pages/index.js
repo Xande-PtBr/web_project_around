@@ -68,7 +68,7 @@ function handleProfileFormSubmit(evt) {
 
   profileName.textContent = nameInput.value;
   profileAbout.textContent = jobInput.value;
-
+  formElement.reset();
   closePopup(popup);
 }
 
@@ -192,13 +192,22 @@ formAddCard.addEventListener("submit", (evt) => {
   closePopup(popupCards); //fecha
 });
 
-//validação para o popup__form-cards
+document.addEventListener("click", (evt) => {
+  const popupCloseOutside = document.querySelectorAll(".popup");
 
-/* enableValidation({
-  formSelector: ".popup__form-card",
-  inputSelector: ".popup__input-card-title, .popup__input-card-link-img",
-  submitButtonSelector: ".popup__button-new-card",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-}); */
+  popupCloseOutside.forEach((popup) => {
+    if (evt.target === popup) {
+      closePopup(popup);
+    }
+  });
+});
+
+document.addEventListener("keydown", (evt) => {
+  const popupKeydown = document.querySelectorAll(".popup");
+
+  popupKeydown.forEach((popup) => {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
+  });
+});

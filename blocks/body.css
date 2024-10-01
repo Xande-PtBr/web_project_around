@@ -4,7 +4,8 @@ body {
   padding: 0;
 }
 
-input:focus,
+/* input:focus,
 textarea:focus {
   outline: none;
 }
+ */

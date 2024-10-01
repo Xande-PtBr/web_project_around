@@ -82,27 +82,29 @@
             <input
               type="text"
               class="popup__form-input popup__input-name"
-              id="nome-input"
+              id="name-input"
               placeholder="Nome"
               required=""
               minlength="2"
-              maxlength="30"
+              maxlength="40"
             />
-            <span class="nome-input-error popup__form-input-error"
-              >Preencha esse campo.</span
-            >
+            <span
+              id="name-input-error"
+              class="popup__message-input-error"
+            ></span>
             <input
               type="text"
               class="popup__form-input popup__input-sobre-mim"
-              id="sobreMim-input"
+              id="about-input"
               placeholder="Sobre mim"
               required=""
               minlength="2"
-              maxlength="30"
+              maxlength="200"
             />
-            <span class="sobreMim-input-error popup__form-input-error"
-              >Preencha esse campo.</span
-            >
+            <span
+              id="about-input-error"
+              class="popup__message-input-error"
+            ></span>
             <button type="submit" class="popup__button-save">Salvar</button>
           </form>
         </article>
@@ -124,20 +126,26 @@
               id="card-title"
               placeholder="Título"
               required=""
+              minlength="2"
+              maxlength="30"
             />
-            <span class="card-title popup__form-input-error"
-              >Preencha esse campo.</span
-            >
+            <span
+              id="card-title-error"
+              class="popup__message-input-error"
+            ></span>
             <input
-              type="text"
+              type="url"
               class="popup__input-card-link-img"
-              id="Link-de-imagem"
+              id="link-de-imagem"
               placeholder="Link de imagem"
               required=""
+              minlength="2"
+              maxlength="30"
             />
-            <span class="Link-de-imagem popup__form-input-error"
-              >Por favor, insira um endereço web..</span
-            >
+            <span
+              id="link-de-imagem-error"
+              class="popup__message-input-error"
+            ></span>
             <button type="submit" class="popup__button-new-card">Criar</button>
           </form>
         </article>
