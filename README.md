@@ -11,11 +11,14 @@
 - **Popup de Edição**: Permite a edição do perfil do usuário através de um formulário popup.
 - **Popup para dicionar Novo Cartão**:campo para adicionar cartão, Titulo e Linkda imagem.
 - **Popup de Imagens**:Ao clicar na Imagem a mesma é ampliada em um popup
+- **Validação:** validação dos formularios,campos inputs e Buttons.
 
 ## Tecnologias Utilizadas
 
 - **HTML**: Estrutura básica da página.
 - **CSS**: Estilização da página.
 - **JavaScript**: Funcionalidade e interatividade.
+
+**Link:** https://xande-ptbr.github.io/web_project_around/
 
 > Este projeto faz parte do meu portifólio como aluno na empresa Tripleten.
