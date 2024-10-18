@@ -1,7 +1,8 @@
-const cardList = document.querySelector(".elements");
-const popup = document.querySelector(".popup_edit_profile");
-const buttonEdit = document.querySelector(".profile__edit-button");
-
+import Card from "./Card.js";
+import { openPopup, closePopup } from "./utils.js";
+import FormValidator from "./FormValidator.js";
+//
+//
 //------------------------- Arr de cards ------------------------------------ */
 const initialCards = [
   {
@@ -29,27 +30,29 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
+//
+//
 
-// -----------------Função para abrir os popups ----------------------------
-function openPopup(popup) {
-  popup.classList.add("popup__opened");
-}
-
-//----------------- Função para fechar os popups ----------------------------
-function closePopup(popup) {
-  popup.classList.remove("popup__opened");
-}
-
-//---criando evento de click para o botao edit, abrindo o popup e carregando com os campos preenchidos----------
+const cardList = document.querySelector(".elements");
+const popup = document.querySelector(".popup_edit_profile");
+const buttonEdit = document.querySelector(".profile__edit-button");
 
 buttonEdit.addEventListener("click", function () {
   openPopup(popup);
-
   nameInput.value = profileName.textContent;
   jobInput.value = profileAbout.textContent;
+  const validate = new FormValidator({
+    formSelector: ".popup__form",
+    inputSelector: ".popup__form-input",
+    submitButtonSelector: ".popup__button-save",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible",
+  });
+
+  validate.enableValidation();
 });
 
-//--------- fechando o popup
 const buttonClose = document.querySelector(".popup__close");
 buttonClose.addEventListener("click", function () {
   closePopup(popup);
@@ -81,6 +84,16 @@ const buttonAddCards = document.querySelector(".profile__add-button");
 
 buttonAddCards.addEventListener("click", function () {
   openPopup(popupCards);
+  const validate = new FormValidator({
+    formSelector: ".popup__form-card",
+    inputSelector: ".popup__input-card-title, .popup__input-card-link-img",
+    submitButtonSelector: ".popup__button-new-card",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible",
+  });
+  validate.checkValiditybutton();
+  validate.enableValidation();
 });
 
 const buttonCloseCard = document.querySelector(".popup__close-card");
@@ -88,81 +101,33 @@ buttonCloseCard.addEventListener("click", function () {
   closePopup(popupCards);
 });
 
-//-------------------------Fim-popup-Cards------------------------------------ */
-//-------------------------Funçºao para criar os Cards------------------------------------ */
+const popupShowImage = document.querySelector(".popup_show-image");
+const popupImage = document.querySelector(".popup__view-image");
+const poputTitle = document.querySelector(".popup__title-image");
 
-function createCard(card) {
-  const cardsTemplate = document.querySelector("#cards-template");
+function openImagePopup(card) {
+  openPopup(popupShowImage);
 
-  //copia do Template card
-  const cardElement = cardsTemplate.content
-    .querySelector(".elements__box")
-    .cloneNode(true);
-
-  //pegar dados do template
-  const cardImage = cardElement.querySelector(".elements__image");
-  const trashCard = cardElement.querySelector(".elements__trash");
-  const cardTitle = cardElement.querySelector(".elements__title");
-  const likeButton = cardElement.querySelector(".elements__like");
-
-  //--------------------   popup show image --------------------------------------------
-  //
-  const popupShowImage = document.querySelector(".popup_show-image");
-  const imageSrc = document.querySelector(".popup__view-image");
-  const imageAlt = document.querySelector(".popup__view-image");
-  const imageTitle = document.querySelector(".popup__title-image");
-  const viewImage = document.querySelector(".popup__view-image-container");
-
-  cardImage.addEventListener("click", function () {
-    openPopup(popupShowImage);
-
-    //pega as info dos campos
-    imageSrc.setAttribute("src", card.link);
-    imageAlt.setAttribute("Alt", card.name);
-    imageTitle.textContent = card.name;
-
-    const buttonCloseImage = document.querySelector(".popup__close-image");
-    buttonCloseImage.addEventListener("click", function () {
-      closePopup(popupShowImage);
-    });
-  });
-
-  //-----------------------  Fim popup show image
-
-  //---------------------Botao Lixeira-----------------
-  trashCard.addEventListener("click", function () {
-    cardElement.remove();
-  });
-
-  //---------------------Botao de curtir----------------
-  let liked = false;
-
-  // Função para alternar o estado do like
-  likeButton.addEventListener("click", function () {
-    if (liked) {
-      likeButton.src = "./images/like.png";
-      /* Liked = false; */
-    } else {
-      likeButton.src = "./images/liked.png";
-      /* Liked = true */
-    }
-
-    liked = !liked;
-  });
-
-  //popular os cards = pegando dos campos do array
-
-  cardImage.setAttribute("src", card.link);
-  cardImage.setAttribute("alt", card.name);
-  cardTitle.textContent = card.name;
-
-  return cardElement;
+  //pega as info dos campos
+  popupImage.setAttribute("src", card.link);
+  popupImage.setAttribute("Alt", card.name);
+  poputTitle.textContent = card.name;
 }
+
+// Fecha o popup de imagem zoom
+const buttonCloseImage = document.querySelector(".popup__close-image");
+buttonCloseImage.addEventListener("click", function () {
+  closePopup(popupShowImage);
+});
 
 //verifica cada elemento no array e adiciona os cartoes do array ao cartao
 
 initialCards.forEach((card) => {
-  const newCardElement = createCard(card);
+  const newCardElement = new Card(
+    card,
+    "#cards-template",
+    openImagePopup
+  ).generateCard();
   cardList.prepend(newCardElement);
 });
 
@@ -178,14 +143,14 @@ formAddCard.addEventListener("submit", (evt) => {
   // atrasar o evendo dubmite ou click (atrasa o evento)
   evt.preventDefault();
 
-  //cria variavel que recebe os valores digitado nos input name e link
+  //variavel que recebe os valores digitado nos input name e link
   const cardInfo = {
     name: inputTitle.value,
     link: inputLink.value,
   };
 
   // nova variavel (newCarData) para criar o novo card (criateCard) com os dados digitado (cardInfo)
-  const newCardData = createCard(cardInfo);
+  const newCardData = new Card(cardInfo, "#cards-template").generateCard();
   //adiciona o cartao no inicio da lista
   cardList.prepend(newCardData);
   formAddCard.reset(); //reseta o form
