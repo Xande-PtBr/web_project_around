@@ -150,7 +150,11 @@ formAddCard.addEventListener("submit", (evt) => {
   };
 
   // nova variavel (newCarData) para criar o novo card (criateCard) com os dados digitado (cardInfo)
-  const newCardData = new Card(cardInfo, "#cards-template").generateCard();
+  const newCardData = new Card(
+    cardInfo,
+    "#cards-template",
+    openImagePopup
+  ).generateCard();
   //adiciona o cartao no inicio da lista
   cardList.prepend(newCardData);
   formAddCard.reset(); //reseta o form

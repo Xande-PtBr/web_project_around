@@ -48,6 +48,7 @@ export default class Card {
     });
   }
 
+  //
   generateCard() {
     // Armazena a marcação no campo privado _element
     // para que outros elementos possam acessá-lo
@@ -58,7 +59,7 @@ export default class Card {
     cardImage.setAttribute("src", this._link);
     cardImage.setAttribute("alt", this._name);
     cardTitle.textContent = this._name;
-
+    console.log(cardImage);
     cardImage.addEventListener("click", () =>
       this._openImagePopup({ name: this._name, link: this._link })
     );
