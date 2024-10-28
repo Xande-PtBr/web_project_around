@@ -1,7 +1,8 @@
 import Card from "./Card.js";
 import { openPopup, closePopup } from "./utils.js";
 import FormValidator from "./FormValidator.js";
-//
+import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
 //
 //------------------------- Arr de cards ------------------------------------ */
 const initialCards = [
@@ -30,6 +31,26 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
+//
+const popupWithImage = new PopupWithImage(
+  ".popup_show-image",
+  ".popup__view-image",
+  ".popup__title-image"
+);
+const sectionNewCardElement = new Section(
+  {
+    items: initialCards,
+    renderer: (items) => {
+      const card = new Card(items, "#cards-template", (card) =>
+        popupWithImage.open(card)
+      );
+      sectionNewCardElement.addItem(card.generateCard());
+    },
+  },
+  ".elements"
+);
+
+sectionNewCardElement.rendererItems();
 //
 //
 
@@ -101,34 +122,10 @@ buttonCloseCard.addEventListener("click", function () {
   closePopup(popupCards);
 });
 
-const popupShowImage = document.querySelector(".popup_show-image");
-const popupImage = document.querySelector(".popup__view-image");
-const poputTitle = document.querySelector(".popup__title-image");
-
-function openImagePopup(card) {
-  openPopup(popupShowImage);
-
-  //pega as info dos campos
-  popupImage.setAttribute("src", card.link);
-  popupImage.setAttribute("Alt", card.name);
-  poputTitle.textContent = card.name;
-}
-
 // Fecha o popup de imagem zoom
 const buttonCloseImage = document.querySelector(".popup__close-image");
 buttonCloseImage.addEventListener("click", function () {
-  closePopup(popupShowImage);
-});
-
-//verifica cada elemento no array e adiciona os cartoes do array ao cartao
-
-initialCards.forEach((card) => {
-  const newCardElement = new Card(
-    card,
-    "#cards-template",
-    openImagePopup
-  ).generateCard();
-  cardList.prepend(newCardElement);
+  popupWithImage.close();
 });
 
 //popup__form-card classe criada para manipular o popup para nao dar conflito entre os popups
@@ -161,7 +158,9 @@ formAddCard.addEventListener("submit", (evt) => {
   closePopup(popupCards); //fecha
 });
 
-document.addEventListener("click", (evt) => {
+//----------------- Função para fechar os popups ----------------------------
+
+/* document.addEventListener("click", (evt) => {
   const popupCloseOutside = document.querySelectorAll(".popup");
 
   popupCloseOutside.forEach((popup) => {
@@ -180,3 +179,4 @@ document.addEventListener("keydown", (evt) => {
     }
   });
 });
+ */

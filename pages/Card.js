@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(cardData, templateCard, openImagePopup) {
+  constructor(cardData, templateCard, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateCard = templateCard;
-    this._openImagePopup = openImagePopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -59,10 +59,9 @@ export default class Card {
     cardImage.setAttribute("src", this._link);
     cardImage.setAttribute("alt", this._name);
     cardTitle.textContent = this._name;
-    console.log(cardImage);
-    cardImage.addEventListener("click", () =>
-      this._openImagePopup({ name: this._name, link: this._link })
-    );
+    cardImage.addEventListener("click", () => {
+      this._handleCardClick({ name: this._name, link: this._link });
+    });
 
     // Retorna o elemento
     this._setEventListeners();
