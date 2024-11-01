@@ -1,9 +1,10 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import Section from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
+import "./index.css";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 //
 //------------------------- Arr de cards ------------------------------------ */
 const initialCards = [
@@ -127,25 +128,6 @@ buttonClose.addEventListener("click", function () {
   popupEditForm.close();
 });
 
-/*-----------------------variaveis form popup----------------------aqui---*/
-/* const formElement = document.querySelector(".popup__form");
-const nameInput = document.querySelector(".popup__input-name");
-const jobInput = document.querySelector(".popup__input-sobre-mim");
-const profileName = document.querySelector(".profile__info-name");
-const profileAbout = document.querySelector(".profile__info-sobre-mim"); */
-
-//--- lidar com o formulário de perfil Enviar e adiando o comportamento do event
-/* function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = jobInput.value;
-  formElement.reset();
-  closePopup(popup);
-}
-
-formElement.addEventListener("submit", handleProfileFormSubmit); */
-
 /* -------------------------popup-Cards------------------------------------ */
 
 /* const popupCards = document.querySelector(".popup__new-cards"); */
@@ -176,44 +158,3 @@ const buttonCloseImage = document.querySelector(".popup__close-image");
 buttonCloseImage.addEventListener("click", function () {
   popupWithImage.close();
 });
-
-//popup__form-card classe criada para manipular o popup para nao dar conflito entre os popups
-
-//pegar dados digitados digitado popup__form add popup__form-card classe criada para manipular o popup
-/* const formAddCard = document.querySelector(".popup__form-card");
-const inputTitle = document.querySelector(".popup__input-card-title");
-const inputLink = document.querySelector(".popup__input-card-link-img");
-
-// pega a variavel e adiciona um evento quando o botão submit for acionado
-formAddCard.addEventListener("submit", (evt) => {
-  // atrasar o evendo dubmite ou click (atrasa o evento)
-  evt.preventDefault();
-
-  //variavel que recebe os valores digitado nos input name e link
-  const cardInfo = {
-    name: inputTitle.value,
-    link: inputLink.value,
-  }; */
-
-//----------------- Função para fechar os popups ----------------------------
-
-/* document.addEventListener("click", (evt) => {
-  const popupCloseOutside = document.querySelectorAll(".popup");
-
-  popupCloseOutside.forEach((popup) => {
-    if (evt.target === popup) {
-      closePopup(popup);
-    }
-  });
-});
-
-document.addEventListener("keydown", (evt) => {
-  const popupKeydown = document.querySelectorAll(".popup");
-
-  popupKeydown.forEach((popup) => {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    }
-  });
-});
- */

@@ -1,3 +1,5 @@
+import likedIcon from "../images/liked.png";
+import likeIcon from "../images/like.png";
 export default class Card {
   constructor(cardData, templateCard, handleCardClick) {
     this._name = cardData.name;
@@ -29,10 +31,10 @@ export default class Card {
     // Função para alternar o estado do like
     this._likeButtonElement.addEventListener("click", () => {
       if (liked) {
-        this._likeButtonElement.setAttribute("src", "./images/like.png");
+        this._likeButtonElement.setAttribute("src", likeIcon);
         /* Liked = false; */
       } else {
-        this._likeButtonElement.setAttribute("src", "./images/liked.png");
+        this._likeButtonElement.setAttribute("src", likedIcon);
         /* Liked = true */
       }
 

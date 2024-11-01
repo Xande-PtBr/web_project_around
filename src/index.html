@@ -6,9 +6,9 @@
     <meta name="author" content="Alexandre Silva" />
     <meta name="description" content="Around" />
     <meta name="keywords" content="html,css" />
-    <link rel="shortcut" href="./imagegallery.ico" />
+    <link rel="shortcut" href="../images/imagegallery.ico" />
 
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="stylesheet" href="./index.css" />
     <title>Around</title>
   </head>
   <body>
@@ -16,27 +16,31 @@
       <header class="header">
         <img
           class="header__logo"
-          src="./images/logo_around.png"
+          src="<%=require('./images/logo_around.png')%>"
           alt="Logo Around"
         />
       </header>
 
       <main class="content">
         <section class="profile">
-          <img src="./images/Avatar.png" alt="Avatar" class="profile__image" />
+          <img
+            src="<%=require('./images/Avatar.png')%>"
+            alt="Avatar"
+            class="profile__image"
+          />
           <div class="profile__info">
             <div class="profile__info-name-edit-button">
               <p class="profile__info-name">Jacques Cousteau</p>
 
               <button class="profile__edit-button">
-                <img src="./images/edit.png" alt="Editar" />
+                <img src="<%=require('./images/edit.png')%>" alt="Editar" />
               </button>
             </div>
             <p class="profile__info-sobre-mim">Explorador</p>
           </div>
 
           <button class="profile__add-button">
-            <img src="./images/add.png" alt="Adicionar" />
+            <img src="<%=require('./images/add.png')%>" alt="Adicionar" />
           </button>
         </section>
         <section class="elements">
@@ -45,12 +49,12 @@
           <template id="cards-template">
             <div class="elements__box">
               <img
-                src="./images/Trash.png"
+                src="<%=require('./images/Trash.png')%>"
                 alt="lixeira"
                 class="elements__trash"
               />
               <img
-                src="./images/image01.png"
+                src="../images/image01.png"
                 alt="image01"
                 class="elements__image"
               />
@@ -58,7 +62,8 @@
                 <h3 class="elements__title">Vale de Yosemite</h3>
                 <img
                   class="elements__like"
-                  src="./images/like.png"
+                  src="<%=require('./images/like.png')%>"
+                  alt="Logo"
                   alt="like"
                 />
               </div>
@@ -74,7 +79,7 @@
         <article class="popup__Container">
           <h2 class="popup__title">Edite Perfil</h2>
           <img
-            src="./images/Close_Icon.png"
+            src="<%=require('./images/Close_Icon.png')%>"
             alt="icone close"
             class="popup__close"
           />
@@ -117,7 +122,7 @@
         <article class="popup__Container">
           <h2 class="popup__title">Novo local</h2>
           <img
-            src="./images/Close_Icon.png"
+            src="<%=require('./images/Close_Icon.png')%>"
             alt="icone close"
             class="popup__close-card"
           />
@@ -157,7 +162,7 @@
       <div class="popup popup_show-image">
         <div class="popup__Container-image">
           <img
-            src="./images/Close_Icon.png"
+            src="<%=require('./images/Close_Icon.png')%>"
             alt="icone close"
             class="popup__close-image"
           />
@@ -170,8 +175,6 @@
       <!-- -----------------------Fim popup Show image------------------------------------------ -->
     </div>
 
-    <script type="module" src="./pages/index.js"></script>
-
-    <!--- <script src="./pages/validate.js"></script>--->
+    <script type="module" src="./index.js"></script>
   </body>
 </html>
