@@ -1,8 +1,9 @@
 import Card from "./Card.js";
-import { openPopup, closePopup } from "./utils.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
 //
 //------------------------- Arr de cards ------------------------------------ */
 const initialCards = [
@@ -32,11 +33,35 @@ const initialCards = [
   },
 ];
 //
+
+//---- lidar com o informacoes de perfil
+const userInfo = new UserInfo({
+  nameSelector: ".profile__info-name",
+  jobSelector: ".profile__info-sobre-mim",
+});
+
+//-------------------------popup profile------------------------------------
+const popupEditForm = new PopupWithForm(
+  ({ name, about }) => {
+    userInfo.setUserInfo(name, about);
+
+    popupEditForm.close();
+  },
+  ".popup_edit_profile",
+  ".popup__form"
+);
+popupEditForm.setEventListeners();
+
+//-------------------------popup image------------------------------------
 const popupWithImage = new PopupWithImage(
   ".popup_show-image",
   ".popup__view-image",
   ".popup__title-image"
 );
+
+popupWithImage.setEventListeners();
+
+//-------------------------sectionNewCardElement------------------------------------
 const sectionNewCardElement = new Section(
   {
     items: initialCards,
@@ -50,18 +75,41 @@ const sectionNewCardElement = new Section(
   ".elements"
 );
 
+//--------------------------popup-Card------------------------------------
+
+const popupCard = new PopupWithForm(
+  ({ name, link }) => {
+    const cardInfo = {
+      name,
+      link,
+    };
+    // nova variavel (newCarData) para criar o novo card (criateCard) com os dados digitado (cardInfo)
+    const newCardData = new Card(cardInfo, "#cards-template", (card) =>
+      popupWithImage.open(card)
+    ).generateCard();
+    sectionNewCardElement.addItem(newCardData);
+    popupCard.close();
+  },
+  ".popup__new-cards",
+  ".popup__form-card"
+);
+
+popupCard.setEventListeners();
 sectionNewCardElement.rendererItems();
 //
 //
+// -------------------------popup profile------------------------------------
 
-const cardList = document.querySelector(".elements");
-const popup = document.querySelector(".popup_edit_profile");
 const buttonEdit = document.querySelector(".profile__edit-button");
 
+const nameInput = document.querySelector(".popup__input-name");
+const jobInput = document.querySelector(".popup__input-sobre-mim");
 buttonEdit.addEventListener("click", function () {
-  openPopup(popup);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileAbout.textContent;
+  popupEditForm.open();
+  const profileInfo = userInfo.getUserInfo();
+  nameInput.value = profileInfo.name;
+  jobInput.value = profileInfo.about;
+
   const validate = new FormValidator({
     formSelector: ".popup__form",
     inputSelector: ".popup__form-input",
@@ -76,18 +124,18 @@ buttonEdit.addEventListener("click", function () {
 
 const buttonClose = document.querySelector(".popup__close");
 buttonClose.addEventListener("click", function () {
-  closePopup(popup);
+  popupEditForm.close();
 });
 
-/*-----------------------variaveis form popup-----------------------*/
-const formElement = document.querySelector(".popup__form");
+/*-----------------------variaveis form popup----------------------aqui---*/
+/* const formElement = document.querySelector(".popup__form");
 const nameInput = document.querySelector(".popup__input-name");
 const jobInput = document.querySelector(".popup__input-sobre-mim");
 const profileName = document.querySelector(".profile__info-name");
-const profileAbout = document.querySelector(".profile__info-sobre-mim");
+const profileAbout = document.querySelector(".profile__info-sobre-mim"); */
 
 //--- lidar com o formulário de perfil Enviar e adiando o comportamento do event
-function handleProfileFormSubmit(evt) {
+/* function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
@@ -96,15 +144,15 @@ function handleProfileFormSubmit(evt) {
   closePopup(popup);
 }
 
-formElement.addEventListener("submit", handleProfileFormSubmit);
+formElement.addEventListener("submit", handleProfileFormSubmit); */
 
 /* -------------------------popup-Cards------------------------------------ */
 
-const popupCards = document.querySelector(".popup__new-cards");
+/* const popupCards = document.querySelector(".popup__new-cards"); */
 const buttonAddCards = document.querySelector(".profile__add-button");
 
 buttonAddCards.addEventListener("click", function () {
-  openPopup(popupCards);
+  popupCard.open();
   const validate = new FormValidator({
     formSelector: ".popup__form-card",
     inputSelector: ".popup__input-card-title, .popup__input-card-link-img",
@@ -117,9 +165,10 @@ buttonAddCards.addEventListener("click", function () {
   validate.enableValidation();
 });
 
+//---
 const buttonCloseCard = document.querySelector(".popup__close-card");
 buttonCloseCard.addEventListener("click", function () {
-  closePopup(popupCards);
+  popupCard.close();
 });
 
 // Fecha o popup de imagem zoom
@@ -131,7 +180,7 @@ buttonCloseImage.addEventListener("click", function () {
 //popup__form-card classe criada para manipular o popup para nao dar conflito entre os popups
 
 //pegar dados digitados digitado popup__form add popup__form-card classe criada para manipular o popup
-const formAddCard = document.querySelector(".popup__form-card");
+/* const formAddCard = document.querySelector(".popup__form-card");
 const inputTitle = document.querySelector(".popup__input-card-title");
 const inputLink = document.querySelector(".popup__input-card-link-img");
 
@@ -144,19 +193,7 @@ formAddCard.addEventListener("submit", (evt) => {
   const cardInfo = {
     name: inputTitle.value,
     link: inputLink.value,
-  };
-
-  // nova variavel (newCarData) para criar o novo card (criateCard) com os dados digitado (cardInfo)
-  const newCardData = new Card(
-    cardInfo,
-    "#cards-template",
-    openImagePopup
-  ).generateCard();
-  //adiciona o cartao no inicio da lista
-  cardList.prepend(newCardData);
-  formAddCard.reset(); //reseta o form
-  closePopup(popupCards); //fecha
-});
+  }; */
 
 //----------------- Função para fechar os popups ----------------------------
 
