@@ -12,12 +12,14 @@
 - **Popup para dicionar Novo Cartão**:campo para adicionar cartão, Titulo e Linkda imagem.
 - **Popup de Imagens**:Ao clicar na Imagem a mesma é ampliada em um popup
 - **Validação:** validação dos formularios,campos inputs e Buttons.
+- **implementando Classes:** Section, Popup, PopupWithImage, PopupWithForm, UserInfo.
 
 ## Tecnologias Utilizadas
 
 - **HTML**: Estrutura básica da página.
 - **CSS**: Estilização da página.
 - **JavaScript**: Funcionalidade e interatividade.
+- **Configuração de empacotamento e compilação do projeto no Webpack**
 
 **Link:** https://xande-ptbr.github.io/web_project_around/
 
