@@ -1,11 +1,16 @@
-import likedIcon from "../images/liked.png";
-import likeIcon from "../images/like.png";
 export default class Card {
-  constructor(cardData, templateCard, handleCardClick) {
-    this._name = cardData.name;
-    this._link = cardData.link;
+  constructor(
+    cardData,
+    templateCard,
+    handleCardClick,
+    handleCardLike,
+    openDeleteConfirmation
+  ) {
+    this._cardData = cardData;
     this._templateCard = templateCard;
     this._handleCardClick = handleCardClick;
+    this._handleCardLike = handleCardLike;
+    this._openDeleteConfirmation = openDeleteConfirmation;
   }
 
   _getTemplate() {
@@ -23,22 +28,36 @@ export default class Card {
   }
 
   _likeButton() {
-    let liked = false;
+    this._liked = this._cardData.isLiked;
 
     //---------------------Botao de curtir----------------
     this._likeButtonElement = this._element.querySelector(".elements__like");
+    if (this._liked) {
+      this._likeButtonElement.setAttribute("src", "../src/images/liked.png");
+    } else {
+      this._likeButtonElement.setAttribute("src", "../src/images/like.png");
+    }
 
     // Função para alternar o estado do like
     this._likeButtonElement.addEventListener("click", () => {
-      if (liked) {
-        this._likeButtonElement.setAttribute("src", likeIcon);
-        /* Liked = false; */
-      } else {
-        this._likeButtonElement.setAttribute("src", likedIcon);
-        /* Liked = true */
+      if (
+        this._likeButtonElement.getAttribute("src") ===
+        "../src/images/liked.png"
+      ) {
+        this._handleCardLike(this._cardData._id, true);
+        return this._likeButtonElement.setAttribute(
+          "src",
+          "../src/images/like.png"
+        );
       }
 
-      liked = !liked;
+      this._handleCardLike(this._cardData._id, false);
+
+      this._liked = !this._liked;
+      return this._likeButtonElement.setAttribute(
+        "src",
+        "../src/images/liked.png"
+      );
     });
   }
 
@@ -46,7 +65,7 @@ export default class Card {
     //---------------------Botao Lixeira-----------------
     const trashCard = this._element.querySelector(".elements__trash");
     trashCard.addEventListener("click", () => {
-      this._element.remove();
+      this._openDeleteConfirmation(this._element, this._cardData._id);
     });
   }
 
@@ -58,11 +77,14 @@ export default class Card {
     const cardImage = this._element.querySelector(".elements__image");
     const cardTitle = this._element.querySelector(".elements__title");
 
-    cardImage.setAttribute("src", this._link);
-    cardImage.setAttribute("alt", this._name);
-    cardTitle.textContent = this._name;
+    cardImage.setAttribute("src", this._cardData.link);
+    cardImage.setAttribute("alt", this._cardData.name);
+    cardTitle.textContent = this._cardData.name;
     cardImage.addEventListener("click", () => {
-      this._handleCardClick({ name: this._name, link: this._link });
+      this._handleCardClick({
+        name: this._cardData.name,
+        link: this._cardData.link,
+      });
     });
 
     // Retorna o elemento

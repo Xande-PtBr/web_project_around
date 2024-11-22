@@ -1,13 +1,14 @@
-import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import api from "../components/Api.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 //
 //------------------------- Arr de cards ------------------------------------ */
-const initialCards = [
+/* const initialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
@@ -32,26 +33,44 @@ const initialCards = [
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
-];
+]; */
 //
 
 //---- lidar com o informacoes de perfil
 const userInfo = new UserInfo({
   nameSelector: ".profile__info-name",
   jobSelector: ".profile__info-sobre-mim",
+  avatarSelector: ".profile__image",
 });
 
 //-------------------------popup profile------------------------------------
 const popupEditForm = new PopupWithForm(
   ({ name, about }) => {
     userInfo.setUserInfo(name, about);
-
-    popupEditForm.close();
+    api.editUserInfo(name, about);
   },
   ".popup_edit_profile",
   ".popup__form"
 );
 popupEditForm.setEventListeners();
+
+//-------------------------popup profile avatar edit------------------------------------
+const popupEditAvatarForm = new PopupWithForm(
+  ({ avatar }) => {
+    userInfo.setUserAvatar(avatar);
+    api.profilePictureUpdate(avatar);
+  },
+  ".popup_edit_profile-avatar",
+  ".popup__form-edit-avatar"
+);
+
+const buttonEditAvatar = document.querySelector(".profile__edit-avatar-button");
+
+buttonEditAvatar.addEventListener("click", function () {
+  popupEditAvatarForm.open();
+});
+
+popupEditAvatarForm.setEventListeners();
 
 //-------------------------popup image------------------------------------
 const popupWithImage = new PopupWithImage(
@@ -62,49 +81,101 @@ const popupWithImage = new PopupWithImage(
 
 popupWithImage.setEventListeners();
 
-//-------------------------sectionNewCardElement------------------------------------
-const sectionNewCardElement = new Section(
-  {
-    items: initialCards,
-    renderer: (items) => {
-      const card = new Card(items, "#cards-template", (card) =>
-        popupWithImage.open(card)
-      );
-      sectionNewCardElement.addItem(card.generateCard());
-    },
+//-------------------------inicio popup ConfirmationDelete---------------------------------
+
+const popupConfirmationDelete = new PopupWithConfirmation(
+  ".popup__confirmation-delete",
+  (card, cardId) => {
+    api.deleteCard(cardId);
+    card.remove();
   },
-  ".elements"
+  ".popup__form-confirmation-delete"
 );
+
+popupConfirmationDelete.setEventListeners();
+
+/*-------------------------Fim popup Confirmation Delete------------------------------------ */
+
+//-------------------------sectionNewCardElement------------------------------------
+let sectionNewCardElement;
+api.getInitialCards().then((cards) => {
+  sectionNewCardElement = new Section(
+    {
+      items: cards,
+      renderer: (items) => {
+        const card = new Card(
+          items,
+          "#cards-template",
+          (card) => {
+            popupWithImage.open(card);
+          },
+
+          (cardId, liked) => {
+            if (liked) {
+              api.deleteLike(cardId);
+            } else {
+              api.isLiked(cardId);
+            }
+          },
+          (card, cardId) => {
+            popupConfirmationDelete.open(card, cardId);
+          }
+        );
+        sectionNewCardElement.addItem(card.generateCard());
+      },
+    },
+    ".elements"
+  );
+  sectionNewCardElement.rendererItems();
+});
 
 //--------------------------popup-Card------------------------------------
 
 const popupCard = new PopupWithForm(
   ({ name, link }) => {
-    const cardInfo = {
-      name,
-      link,
-    };
-    // nova variavel (newCarData) para criar o novo card (criateCard) com os dados digitado (cardInfo)
-    const newCardData = new Card(cardInfo, "#cards-template", (card) =>
-      popupWithImage.open(card)
-    ).generateCard();
-    sectionNewCardElement.addItem(newCardData);
-    popupCard.close();
+    api.addNewCard(name, link).then((apiCard) => {
+      /*       apiCard = {
+        name,
+        link,
+        _id: apiCard._id,
+        likes: apiCard.likes,
+        owner: apiCard.owner,
+      }; */
+
+      // nova variavel (newCarData) para criar o novo card (criateCard) com os dados digitado (cardInfo)
+      const newCardData = new Card(
+        apiCard,
+        "#cards-template",
+        (card) => popupWithImage.open(card),
+        (cardId, liked) => {
+          if (liked) {
+            api.delete(cardId);
+          } else {
+            api.isLiked(cardId);
+          }
+        },
+        (card, cardId) => {
+          popupConfirmationDelete.open(card, cardId);
+        }
+      ).generateCard();
+      sectionNewCardElement.addItem(newCardData);
+      popupCard.close();
+    });
   },
   ".popup__new-cards",
   ".popup__form-card"
 );
 
 popupCard.setEventListeners();
-sectionNewCardElement.rendererItems();
+
 //
 //
 // -------------------------popup profile------------------------------------
 
 const buttonEdit = document.querySelector(".profile__edit-button");
-
 const nameInput = document.querySelector(".popup__input-name");
 const jobInput = document.querySelector(".popup__input-sobre-mim");
+
 buttonEdit.addEventListener("click", function () {
   popupEditForm.open();
   const profileInfo = userInfo.getUserInfo();
@@ -128,7 +199,7 @@ buttonClose.addEventListener("click", function () {
   popupEditForm.close();
 });
 
-/* -------------------------popup-Cards------------------------------------ */
+/* -------------------------Fim popup-Cards------------------------------------ */
 
 /* const popupCards = document.querySelector(".popup__new-cards"); */
 const buttonAddCards = document.querySelector(".profile__add-button");
@@ -158,3 +229,5 @@ const buttonCloseImage = document.querySelector(".popup__close-image");
 buttonCloseImage.addEventListener("click", function () {
   popupWithImage.close();
 });
+
+/*-------------------------Fim popup-Cards------------------------------------*/

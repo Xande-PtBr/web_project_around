@@ -6,9 +6,9 @@
     <meta name="author" content="Alexandre Silva" />
     <meta name="description" content="Around" />
     <meta name="keywords" content="html,css" />
-    <link rel="shortcut" href="../images/imagegallery.ico" />
+    <link rel="shortcut" href="./images/imagegallery.ico" />
 
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Around</title>
   </head>
   <body>
@@ -16,31 +16,34 @@
       <header class="header">
         <img
           class="header__logo"
-          src="<%=require('./images/logo_around.png')%>"
+          src="./images/logo_around.png"
           alt="Logo Around"
         />
       </header>
 
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/Avatar.png')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__avatar-container">
+            <img
+              src="./images/Avatar.png"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <button class="profile__edit-avatar-button"></button>
+          </div>
           <div class="profile__info">
             <div class="profile__info-name-edit-button">
               <p class="profile__info-name">Jacques Cousteau</p>
 
               <button class="profile__edit-button">
-                <img src="<%=require('./images/edit.png')%>" alt="Editar" />
+                <img src="./images/edit.png" alt="Editar" />
               </button>
             </div>
             <p class="profile__info-sobre-mim">Explorador</p>
           </div>
 
           <button class="profile__add-button">
-            <img src="<%=require('./images/add.png')%>" alt="Adicionar" />
+            <img src="./images/add.png" alt="Adicionar" />
           </button>
         </section>
         <section class="elements">
@@ -49,7 +52,7 @@
           <template id="cards-template">
             <div class="elements__box">
               <img
-                src="<%=require('./images/Trash.png')%>"
+                src="./images/Trash.png"
                 alt="lixeira"
                 class="elements__trash"
               />
@@ -62,7 +65,7 @@
                 <h3 class="elements__title">Vale de Yosemite</h3>
                 <img
                   class="elements__like"
-                  src="<%=require('./images/like.png')%>"
+                  src="./images/like.png"
                   alt="Logo"
                   alt="like"
                 />
@@ -79,7 +82,7 @@
         <article class="popup__Container">
           <h2 class="popup__title">Edite Perfil</h2>
           <img
-            src="<%=require('./images/Close_Icon.png')%>"
+            src="./images/Close_Icon.png"
             alt="icone close"
             class="popup__close"
           />
@@ -122,7 +125,7 @@
         <article class="popup__Container">
           <h2 class="popup__title">Novo local</h2>
           <img
-            src="<%=require('./images/Close_Icon.png')%>"
+            src="./images/Close_Icon.png"
             alt="icone close"
             class="popup__close-card"
           />
@@ -162,7 +165,7 @@
       <div class="popup popup_show-image">
         <div class="popup__Container-image">
           <img
-            src="<%=require('./images/Close_Icon.png')%>"
+            src="./images/Close_Icon.png"
             alt="icone close"
             class="popup__close-image"
           />
@@ -173,8 +176,59 @@
         </div>
       </div>
       <!-- -----------------------Fim popup Show image------------------------------------------ -->
+      <!--------------------------Inicio popup ConfirmDelete-------------------------------------------------->
+      <div class="popup popup__confirmation-delete">
+        <article class="popup__Container">
+          <h2 class="popup__title">Tem certeza?</h2>
+          <img
+            src="./images/Close_Icon.png"
+            alt="icone close"
+            class="popup__close-delete"
+          />
+          <form class="popup__form popup__form-confirmation-delete">
+            <button type="submit" class="popup__button-confirmation-delete">
+              Sim
+            </button>
+          </form>
+        </article>
+      </div>
+      <!--------------------------Fim popup ConfirmDelete-------------------------------------------------->
+      <!--------------------------Inicio popup profile avatar edit-------------------------------------------------->
+
+      <div class="popup popup_edit_profile-avatar">
+        <article class="popup__Container">
+          <h2 class="popup__title">Alterar a foto do perfil</h2>
+          <img
+            src="./images/Close_Icon.png"
+            alt="icone close"
+            class="popup__close-edit-avatar"
+          />
+          <form class="popup__form popup__form-edit-avatar">
+            <input
+              type="url"
+              class="popup__form-input popup__input-avatar"
+              id="avatar-input"
+              name="avatar"
+              placeholder="Editar foto"
+              required
+            />
+            <span
+              id="avatar-input-error"
+              class="popup__message-input-error"
+            ></span>
+            <button
+              type="submit"
+              class="popup__button-save popup__button-save-avatar"
+            >
+              Salvar
+            </button>
+          </form>
+        </article>
+      </div>
+      <!--------------------------Fim popup profile Avatar edit
+            -------------------------------------------------->
     </div>
 
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
