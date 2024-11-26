@@ -43,11 +43,27 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__image",
 });
 
+let userId;
+
+api.getUserInfo().then((data) => {
+  userId = data._id;
+  userInfo.setUserInfo(data.name, data.about);
+  userInfo.setUserAvatar(data.avatar);
+});
+
+const buttonSaveAvatar = document.querySelector(".popup__button-save-avatar");
 //-------------------------popup profile------------------------------------
 const popupEditForm = new PopupWithForm(
   ({ name, about }) => {
-    userInfo.setUserInfo(name, about);
-    api.editUserInfo(name, about);
+    buttonSaveAvatar.textContent = "Salvando...";
+    api
+      .editUserInfo(name, about)
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.about);
+      })
+      .finally(() => {
+        buttonSaveAvatar.textContent = "Salvar";
+      });
   },
   ".popup_edit_profile",
   ".popup__form"
@@ -57,8 +73,11 @@ popupEditForm.setEventListeners();
 //-------------------------popup profile avatar edit------------------------------------
 const popupEditAvatarForm = new PopupWithForm(
   ({ avatar }) => {
+    buttonSaveAvatar.textContent = "Salvando...";
     userInfo.setUserAvatar(avatar);
-    api.profilePictureUpdate(avatar);
+    api.profilePictureUpdate(avatar).finally(() => {
+      buttonSaveAvatar.textContent = "Salvar";
+    });
   },
   ".popup_edit_profile-avatar",
   ".popup__form-edit-avatar"
@@ -81,7 +100,7 @@ const popupWithImage = new PopupWithImage(
 
 popupWithImage.setEventListeners();
 
-//-------------------------inicio popup ConfirmationDelete---------------------------------
+//-------------------------inicio popup Confirmation Delete---------------------------------
 
 const popupConfirmationDelete = new PopupWithConfirmation(
   ".popup__confirmation-delete",
@@ -119,7 +138,8 @@ api.getInitialCards().then((cards) => {
           },
           (card, cardId) => {
             popupConfirmationDelete.open(card, cardId);
-          }
+          },
+          userId
         );
         sectionNewCardElement.addItem(card.generateCard());
       },
@@ -141,6 +161,7 @@ const popupCard = new PopupWithForm(
         likes: apiCard.likes,
         owner: apiCard.owner,
       }; */
+      // Lembrete: Explicação desta parte, porque nao é necessario colocar os dados do card no cardInfo
 
       // nova variavel (newCarData) para criar o novo card (criateCard) com os dados digitado (cardInfo)
       const newCardData = new Card(
@@ -156,7 +177,8 @@ const popupCard = new PopupWithForm(
         },
         (card, cardId) => {
           popupConfirmationDelete.open(card, cardId);
-        }
+        },
+        userId
       ).generateCard();
       sectionNewCardElement.addItem(newCardData);
       popupCard.close();
@@ -218,10 +240,26 @@ buttonAddCards.addEventListener("click", function () {
   validate.enableValidation();
 });
 
-//---
+//-----------fechar popup card ---------------------------------------------
 const buttonCloseCard = document.querySelector(".popup__close-card");
 buttonCloseCard.addEventListener("click", function () {
   popupCard.close();
+});
+
+//-----------fechar popup conformation delete ------------------------------
+const buttonCloseConfirmationDelete = document.querySelector(
+  ".popup__close-delete"
+);
+buttonCloseConfirmationDelete.addEventListener("click", function () {
+  popupConfirmationDelete.close();
+});
+
+//-----------fechar popup Edit Avatar ------------------------------
+const buttonClosePopupAvatar = document.querySelector(
+  ".popup__close-edit-avatar"
+);
+buttonClosePopupAvatar.addEventListener("click", function () {
+  popupEditAvatarForm.close();
 });
 
 // Fecha o popup de imagem zoom
@@ -230,4 +268,4 @@ buttonCloseImage.addEventListener("click", function () {
   popupWithImage.close();
 });
 
-/*-------------------------Fim popup-Cards------------------------------------*/
+/*-----------------------------------------------------------*/

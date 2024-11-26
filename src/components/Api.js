@@ -18,6 +18,24 @@ class Api {
       .catch((err) => console.log(`Error: ${err.getMessage()}`));
   }
 
+  //------------ atualiza Avatar ----------------
+  profilePictureUpdate(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        // se o servidor retornar um erro, rejeite a promessa
+      })
+      .catch((err) => console.log(`Error: ${err.getMessage()}`));
+  }
+
   //--------pega informações do perfil
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -99,23 +117,6 @@ class Api {
       body: JSON.stringify({
         name,
         link,
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // se o servidor retornar um erro, rejeite a promessa
-      })
-      .catch((err) => console.log(`Error: ${err.getMessage()}`));
-  }
-
-  profilePictureUpdate(avatar) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar,
       }),
     })
       .then((res) => {

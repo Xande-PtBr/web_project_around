@@ -4,13 +4,15 @@ export default class Card {
     templateCard,
     handleCardClick,
     handleCardLike,
-    openDeleteConfirmation
+    openDeleteConfirmation,
+    userId
   ) {
     this._cardData = cardData;
     this._templateCard = templateCard;
     this._handleCardClick = handleCardClick;
     this._handleCardLike = handleCardLike;
     this._openDeleteConfirmation = openDeleteConfirmation;
+    this._userId = userId;
   }
 
   _getTemplate() {
@@ -62,8 +64,19 @@ export default class Card {
   }
 
   _remove() {
-    //---------------------Botao Lixeira-----------------
     const trashCard = this._element.querySelector(".elements__trash");
+    const cardUserId = this._cardData.owner._id; // Id do dono do card
+
+    if (this._userId !== cardUserId) {
+      // Verifica se o usuário logado é o dono do card para mostrar o botão da lixeira
+      // mostra o botão da lixeira
+      trashCard.style.display = "block"; // Mostra o botão lixeira
+    } else {
+      // oculta o botão da lixeira
+      return (trashCard.style.display = "none");
+    }
+    //---------------------Botao Lixeira-----------------
+
     trashCard.addEventListener("click", () => {
       this._openDeleteConfirmation(this._element, this._cardData._id);
     });

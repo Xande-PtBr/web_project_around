@@ -24,22 +24,18 @@
       <main class="content">
         <section class="profile">
           <div class="profile__avatar-container">
-            <img
-              src="./images/Avatar.png"
-              alt="Avatar"
-              class="profile__image"
-            />
+            <img alt="Avatar" class="profile__image" />
             <button class="profile__edit-avatar-button"></button>
           </div>
           <div class="profile__info">
             <div class="profile__info-name-edit-button">
-              <p class="profile__info-name">Jacques Cousteau</p>
+              <p class="profile__info-name"></p>
 
               <button class="profile__edit-button">
                 <img src="./images/edit.png" alt="Editar" />
               </button>
             </div>
-            <p class="profile__info-sobre-mim">Explorador</p>
+            <p class="profile__info-sobre-mim"></p>
           </div>
 
           <button class="profile__add-button">
@@ -179,13 +175,13 @@
       <!--------------------------Inicio popup ConfirmDelete-------------------------------------------------->
       <div class="popup popup__confirmation-delete">
         <article class="popup__Container">
-          <h2 class="popup__title">Tem certeza?</h2>
           <img
             src="./images/Close_Icon.png"
             alt="icone close"
             class="popup__close-delete"
           />
           <form class="popup__form popup__form-confirmation-delete">
+            <h2 class="popup__title">Tem certeza?</h2>
             <button type="submit" class="popup__button-confirmation-delete">
               Sim
             </button>
@@ -197,19 +193,19 @@
 
       <div class="popup popup_edit_profile-avatar">
         <article class="popup__Container">
-          <h2 class="popup__title">Alterar a foto do perfil</h2>
           <img
             src="./images/Close_Icon.png"
             alt="icone close"
             class="popup__close-edit-avatar"
           />
           <form class="popup__form popup__form-edit-avatar">
+            <h2 class="popup__title">Alterar a foto do perfil</h2>
             <input
               type="url"
               class="popup__form-input popup__input-avatar"
               id="avatar-input"
               name="avatar"
-              placeholder="Editar foto"
+              placeholder="Link da imagem"
               required
             />
             <span
@@ -225,8 +221,7 @@
           </form>
         </article>
       </div>
-      <!--------------------------Fim popup profile Avatar edit
-            -------------------------------------------------->
+      <!--------------------------Fim popup profile Avatar edit  ------------->
     </div>
 
     <script type="module" src="./pages/index.js"></script>
