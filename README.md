@@ -10,9 +10,23 @@
 - **Galeria de Imagens**: Mostra uma série de imagens com títulos e um botão de "curtir".
 - **Popup de Edição**: Permite a edição do perfil do usuário através de um formulário popup.
 - **Popup para dicionar Novo Cartão**:campo para adicionar cartão, Titulo e Linkda imagem.
-- **Popup de Imagens**:Ao clicar na Imagem a mesma é ampliada em um popup
+- **Popup de Imagens**:Ao clicar na Imagem a mesma é ampliada em um popup.
+- **Popup confirmation**: popup para a confirmaçãp da exclusão do card.
+- **Popup editar perfil**: popup para editar e salvar a imagem do perfil.
 - **Validação:** validação dos formularios,campos inputs e Buttons.
-- **implementando Classes:** Section, Popup, PopupWithImage, PopupWithForm, UserInfo.
+- **Implementando Classes**: Section, Popup, PopupWithImage, PopupWithForm, UserInfo.
+- **Integração com API**:
+
+  1.  Carregamento de informações do usuário do servidor.
+  2.  Carregamento de cartões do servidor.
+  3.  Edição do perfil.
+  4.  Adição de um novo cartão.
+  5.  Alternar as "curtidas" em um cartão.
+  6.  Criação de um pop-up para excluir um cartão.
+  7.  Exclusão de cartão.
+  8.  Adição e remoção de curtidas.
+  9.  Atualização de foto do perfil.
+  10. Aperfeiçoamento geral da UX, "alterando o textContent do botão salvar para salvando..." notificando o usuario que o upload esta em andamento.
 
 ## Tecnologias Utilizadas
 

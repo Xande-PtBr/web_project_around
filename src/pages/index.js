@@ -44,12 +44,47 @@ const userInfo = new UserInfo({
 });
 
 let userId;
+let sectionNewCardElement;
 
-api.getUserInfo().then((data) => {
-  userId = data._id;
-  userInfo.setUserInfo(data.name, data.about);
-  userInfo.setUserAvatar(data.avatar);
+api.getAppInfo().then(([userData, cardData]) => {
+  //---------pega informações do perfil
+  userId = userData._id;
+  userInfo.setUserInfo(userData.name, userData.about);
+  userInfo.setUserAvatar(userData.avatar);
+  //---------------pega as cards da API
+
+  sectionNewCardElement = new Section(
+    {
+      items: cardData,
+      renderer: (items) => {
+        const card = new Card(
+          items,
+          "#cards-template",
+          (card) => {
+            popupWithImage.open(card);
+          },
+
+          (cardId, liked) => {
+            if (liked) {
+              api.deleteLike(cardId);
+            } else {
+              api.isLiked(cardId);
+            }
+          },
+          (card, cardId) => {
+            popupConfirmationDelete.open(card, cardId);
+          },
+          userId
+        );
+        sectionNewCardElement.addItem(card.generateCard());
+      },
+    },
+    ".elements"
+  );
+  sectionNewCardElement.rendererItems();
 });
+
+//-------------------------sectionNewCardElement------------------------------------
 
 const buttonSaveAvatar = document.querySelector(".popup__button-save-avatar");
 //-------------------------popup profile------------------------------------
@@ -114,40 +149,6 @@ const popupConfirmationDelete = new PopupWithConfirmation(
 popupConfirmationDelete.setEventListeners();
 
 /*-------------------------Fim popup Confirmation Delete------------------------------------ */
-
-//-------------------------sectionNewCardElement------------------------------------
-let sectionNewCardElement;
-api.getInitialCards().then((cards) => {
-  sectionNewCardElement = new Section(
-    {
-      items: cards,
-      renderer: (items) => {
-        const card = new Card(
-          items,
-          "#cards-template",
-          (card) => {
-            popupWithImage.open(card);
-          },
-
-          (cardId, liked) => {
-            if (liked) {
-              api.deleteLike(cardId);
-            } else {
-              api.isLiked(cardId);
-            }
-          },
-          (card, cardId) => {
-            popupConfirmationDelete.open(card, cardId);
-          },
-          userId
-        );
-        sectionNewCardElement.addItem(card.generateCard());
-      },
-    },
-    ".elements"
-  );
-  sectionNewCardElement.rendererItems();
-});
 
 //--------------------------popup-Card------------------------------------
 

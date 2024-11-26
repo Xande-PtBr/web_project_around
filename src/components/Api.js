@@ -18,6 +18,10 @@ class Api {
       .catch((err) => console.log(`Error: ${err.getMessage()}`));
   }
 
+  getAppInfo() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+  }
+
   //------------ atualiza Avatar ----------------
   profilePictureUpdate(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
