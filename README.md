@@ -35,6 +35,6 @@
 - **JavaScript**: Funcionalidade e interatividade.
 - **Configuração de empacotamento e compilação do projeto no Webpack**
 
-**Link:** https://xande-ptbr.github.io/web_project_around/
+**Link:** https://xande-ptbr.github.io/web_project_around/src/index.html
 
 > Este projeto faz parte do meu portifólio como aluno na empresa Tripleten.
